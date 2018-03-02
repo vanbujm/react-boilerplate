@@ -24,10 +24,10 @@ import run from './run';
 
 // Heroku
 const remote = {
-  name: 'heroku',
-  url: 'https://git.heroku.com/<app>.git',
+  name: 'jvburen@thoughtworks.com',
+  url: 'https://git.heroku.com/react-boilerplate-stag.git',
   branch: 'master',
-  website: 'https://<app>.herokuapp.com',
+  website: 'https://react-boilerplate-stag.herokuapp.com',
 };
 
 // Azure Web Apps

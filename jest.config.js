@@ -99,4 +99,5 @@ module.exports = {
   // unmockedModulePathPatterns: // [array<string>]
 
   verbose: true, // [boolean]
+  testResultsProcessor: 'jest-junit',
 };

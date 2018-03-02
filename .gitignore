@@ -11,6 +11,7 @@ database.sqlite
 
 # Test coverage
 coverage
+junit.xml
 
 # Logs
 npm-debug.log*
