@@ -1,0 +1,115 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+defaults: &defaults
+  working_directory: ~/react-boilerplate
+  docker:
+    - image: circleci/node:7.10
+
+version: 2
+jobs:
+  checkout_code_and_build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - react-boilerplate-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: react-boilerplate-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+            - yarn-cache
+      - save_cache:
+          key: react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/react-boilerplate
+
+  test:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+            - react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn test
+
+  precompile_assets:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+            - react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn run build --release
+      - save_cache:
+         key: react-boilerplate-build-{{ .Environment.CIRCLE_SHA1 }}
+         paths:
+           - build
+
+  deploy-job:
+      <<: *defaults
+      steps:
+        - checkout
+        - add_ssh_keys:
+            fingerprints:
+              - "c6:56:24:e1:5f:db:0f:ac:06:0d:4c:d0:93:97:61:db"
+        - restore_cache:
+            keys:
+              - react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
+        - restore_cache:
+            keys:
+              - react-boilerplate-build-{{ .Environment.CIRCLE_SHA1 }}
+        - run:
+            name: Run Setup
+            command: |
+              wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz
+              sudo mkdir -p /usr/local/lib /usr/local/bin
+              sudo tar -xvzf heroku-linux-amd64.tar.gz -C /usr/local/lib
+              sudo ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku
+        - run:
+            name: Update Config
+            command: |
+              cat > ~/.netrc << EOF
+              machine api.heroku.com
+                login $HEROKU_LOGIN
+                password $HEROKU_API_KEY
+              EOF
+              cat >> ~/.ssh/config << EOF
+
+
+              Host *
+                 VerifyHostKeyDNS yes
+                 StrictHostKeyChecking no
+              EOF
+              cat ~/.netrc
+              cat ~/.ssh/config
+              git config --global user.email "vanbujm"
+              git config --global user.name "vanbujm@gmail.com"
+              heroku git:remote -a $HEROKU_APP
+        - run:
+            name: Add built assests
+            command: |
+              git add -f .
+              git commit -m "circle ci push" --no-verify --allow-empty
+        - run:
+           name: Deploy Master to Heroku
+           command: |
+             git push --force git@heroku.com:$HEROKU_APP.git HEAD:refs/heads/master
+             heroku restart
+
+workflows:
+   version: 2
+   build-and-deploy:
+      jobs:
+        - checkout_code_and_build
+        - test:
+            requires:
+              - checkout_code_and_build
+        - precompile_assets:
+            requires:
+              - checkout_code_and_build
+        - deploy-job:
+            requires:
+              - test
+              - precompile_assets
