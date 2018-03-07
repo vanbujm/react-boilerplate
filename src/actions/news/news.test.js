@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import newsRequest from './newsRequest.mock';
 import { fetchNews, createNewsAction } from './news';
-import { NEWS_FEED_ERROR, SET_REACT_NEWS } from '../constants';
+import { NEWS_FEED_ERROR, SET_REACT_NEWS } from '../../constants/index';
 
 const fetchSpy = jest.fn();
 const dispatchSpy = jest.fn();

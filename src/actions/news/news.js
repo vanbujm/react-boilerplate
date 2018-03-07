@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import 'whatwg-fetch';
-import createFetch from '../createFetch';
+import createFetch from '../../createFetch';
 
 import {
   FETCH_REACT_NEWS,
   SET_REACT_NEWS,
   NEWS_FEED_ERROR,
-} from '../constants';
+} from '../../constants/index';
 
 export async function fetchNews(fetchFunction) {
   const resp = await fetchFunction('/graphql', {

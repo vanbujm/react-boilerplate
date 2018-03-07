@@ -11,7 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { connect } from 'react-redux';
-import { retrieveReactNews } from '../../actions/news';
+import { retrieveReactNews } from '../../actions/news/news';
 import s from './Home.css';
 
 export class Home extends React.Component {
