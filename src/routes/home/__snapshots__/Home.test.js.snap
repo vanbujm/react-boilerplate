@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Page renders 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      React.js News
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`Home Page renders news content 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      React.js News
+    </h1>
+    <article
+      className="newsItem"
+    >
+      <h1
+        className="newsTitle"
+      >
+        <a
+          href="https://reactjsnews.com/fake-news"
+        >
+          Using Proxies with Redux Types
+        </a>
+      </h1>
+      <div
+        className="newsDesc"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<h1>Some mock content with html </h1>",
+          }
+        }
+      />
+    </article>
+  </div>
+</div>
+`;
