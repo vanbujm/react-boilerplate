@@ -2,20 +2,24 @@
 import 'whatwg-fetch';
 import createFetch from '../createFetch';
 
-import { FETCH_REACT_NEWS, SET_REACT_NEWS } from '../constants';
+import {
+  FETCH_REACT_NEWS,
+  SET_REACT_NEWS,
+  NEWS_FEED_ERROR,
+} from '../constants';
 
-async function fetchNews(fetchFunction) {
+export async function fetchNews(fetchFunction) {
   const resp = await fetchFunction('/graphql', {
     body: JSON.stringify({
       query: '{news{title,link,content}}',
     }),
   });
   const { data } = await resp.json();
-  if (!data || !data.news) throw new Error('Failed to load the news feed.');
+  if (!data || !data.news) throw new Error(NEWS_FEED_ERROR);
   return data.news;
 }
 
-function createNewsAction(dispatch, news) {
+export function createNewsAction(dispatch, news) {
   return dispatch({
     type: SET_REACT_NEWS,
     news,
