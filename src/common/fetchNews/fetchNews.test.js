@@ -1,15 +1,10 @@
 /* eslint-env jest */
 import 'babel-polyfill';
 import newsRequest from './newsRequest.mock';
-import { fetchNews, createNewsAction } from './news';
-import { NEWS_FEED_ERROR, SET_REACT_NEWS } from '../../constants/index';
+import { fetchNews } from './fetchNews';
+import { NEWS_FEED_ERROR } from '../../constants/index';
 
 const fetchSpy = jest.fn();
-const dispatchSpy = jest.fn();
-const dispatchMock = data => {
-  dispatchSpy.mockReturnValue(data);
-  return dispatchSpy();
-};
 const mockNewsData = {
   news: [
     {
@@ -31,15 +26,5 @@ describe('fetchNews', () => {
     await expect(fetchNews(fetchSpy)).rejects.toEqual(
       new Error(NEWS_FEED_ERROR),
     );
-  });
-});
-
-describe('createNewsAction', () => {
-  test('generates an action', () => {
-    const newsArray = [];
-    const actionObject = createNewsAction(dispatchMock, newsArray);
-    expect(dispatchSpy.mock.calls.length).toBe(1);
-    expect(actionObject.type).toBe(SET_REACT_NEWS);
-    expect(actionObject.news).toBe(newsArray);
   });
 });

@@ -20,7 +20,7 @@ const mockNewsAction = () => newsActionSpy();
 describe('Home Page', () => {
   test('renders', () => {
     const renderedComponent = renderer
-      .create(<Home retrieveReactNews={mockNewsAction} />)
+      .create(<Home requestReactNews={mockNewsAction} />)
       .toJSON();
 
     expect(newsActionSpy.mock.calls.length).toBeGreaterThan(0);
@@ -29,7 +29,7 @@ describe('Home Page', () => {
 
   test('renders news content', () => {
     const renderedComponent = renderer
-      .create(<Home retrieveReactNews={mockNewsAction} news={mockNewsData} />)
+      .create(<Home requestReactNews={mockNewsAction} news={mockNewsData} />)
       .toJSON();
 
     expect(renderedComponent).toMatchSnapshot();

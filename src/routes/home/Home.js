@@ -11,12 +11,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { connect } from 'react-redux';
-import { retrieveReactNews } from '../../actions/news/news';
+import { requestReactNews } from '../../actions/news';
 import s from './Home.css';
 
 export class Home extends React.Component {
   static propTypes = {
-    retrieveReactNews: PropTypes.func.isRequired,
+    requestReactNews: PropTypes.func.isRequired,
     news: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ export class Home extends React.Component {
   };
 
   componentDidMount() {
-    this.props.retrieveReactNews();
+    this.props.requestReactNews();
   }
 
   render() {
@@ -65,7 +65,7 @@ const mapStateToProps = store => ({
   news: store.news.reactNews,
 });
 const mapDispatchToProps = {
-  retrieveReactNews,
+  requestReactNews,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
