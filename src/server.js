@@ -13,7 +13,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
 import { graphql } from 'graphql';
-import expressGraphQL from 'express-graphql';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { ApolloEngine } from 'apollo-engine';
 import jwt from 'jsonwebtoken';
 import nodeFetch from 'node-fetch';
 import React from 'react';
@@ -35,6 +36,9 @@ import config from './config';
 
 const app = express();
 
+const engine = new ApolloEngine({
+  apiKey: 'service:vanbujm-react-boilerplae:pc75-Ygb7nCjEhHr5zA34g',
+});
 //
 // If you are using proxy from external machine, you can set TRUST_PROXY env
 // Default is to trust proxy headers only from loopback interface.
@@ -105,13 +109,15 @@ app.get(
 // -----------------------------------------------------------------------------
 app.use(
   '/graphql',
-  expressGraphQL(req => ({
+  graphqlExpress({
     schema,
-    graphiql: __DEV__,
-    rootValue: { request: req },
-    pretty: __DEV__,
-  })),
+    tracing: true,
+    cacheControl: true,
+  }),
 );
+
+// GraphiQL, a visual editor for queries
+if (__DEV__) app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 //
 // Register server-side rendering middleware
@@ -220,9 +226,17 @@ app.use((err, req, res, next) => {
 const promise = models.sync().catch(err => console.error(err.stack));
 if (!module.hot) {
   promise.then(() => {
-    app.listen(config.port, () => {
-      console.info(`The server is running at http://localhost:${config.port}/`);
-    });
+    engine.listen(
+      {
+        port: config.port,
+        expressApp: app,
+      },
+      () => {
+        console.info(
+          `The server is running at http://localhost:${config.port}/`,
+        );
+      },
+    );
   });
 }
 
