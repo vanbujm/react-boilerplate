@@ -48,6 +48,7 @@ module.exports = {
 
   globals: {
     __DEV__: true,
+    fetch: null,
   },
 
   // https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean

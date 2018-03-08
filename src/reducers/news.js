@@ -1,4 +1,4 @@
-import { SET_REACT_NEWS } from '../constants';
+import { SET_REACT_NEWS } from '../constants/action-types';
 
 export default function news(state = {}, action) {
   switch (action.type) {

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetchNews calls the fetch function 1`] = `
+Array [
+  Array [
+    "/graphql",
+    Object {
+      "body": "{\\"query\\":\\"{news{title,link,content}}\\"}",
+    },
+  ],
+]
+`;

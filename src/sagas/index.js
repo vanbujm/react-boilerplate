@@ -2,7 +2,7 @@
 
 import { all, fork } from 'redux-saga/effects';
 
-import { watchRequestReactNews } from './news';
+import { watchRequestReactNews } from './news/news';
 
 export function* rootSaga() {
   const allSagas = [watchRequestReactNews];

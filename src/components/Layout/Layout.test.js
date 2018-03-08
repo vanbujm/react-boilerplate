@@ -22,9 +22,16 @@ const initialState = {};
 describe('Layout', () => {
   test('renders children correctly', () => {
     const store = mockStore(initialState);
+    const context = {
+      insertCss: () => {},
+      fetch: () => {},
+      store,
+      pathname: '',
+    };
+
     const wrapper = renderer
       .create(
-        <App context={{ insertCss: () => {}, fetch: () => {}, store }}>
+        <App context={context}>
           <Layout>
             <div className="child" />
           </Layout>
