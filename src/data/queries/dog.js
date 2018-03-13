@@ -8,11 +8,24 @@ const doggos = [];
 
 const numberOfDoggos = 20;
 
+const seed = 6;
+faker.seed(seed);
+
+const seededRandom = (max, min) => {
+  const actualMax = max || 1;
+  const actualMin = min || 0;
+
+  const actualSeed = (seed * 9301 + 49297) % 233280;
+  const rnd = actualSeed / 233280;
+
+  return actualMin + rnd * (actualMax - actualMin);
+};
+
 for (let i = 0; i < numberOfDoggos; i++) {
   const doggo = {
     id: i + 1,
     name: faker.name.firstName(),
-    breed: DOG_BREEDS[Math.floor(Math.random() * numberOfDoggos)],
+    breed: DOG_BREEDS[Math.floor(seededRandom(DOG_BREEDS.length))],
     isGoodDog: true,
   };
   doggos.push(doggo);

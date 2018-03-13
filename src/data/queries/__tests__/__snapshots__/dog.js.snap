@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test dog query matches expected query object 1`] = `
+Object {
+  "args": Object {
+    "id": Object {
+      "type": "ID",
+    },
+  },
+  "resolve": [Function],
+  "type": "Dog",
+}
+`;
+
+exports[`test dog query matches expected query object 2`] = `
+Object {
+  "breed": "Griffon Bruxellois",
+  "id": 2,
+  "isGoodDog": true,
+  "name": "Una",
+}
+`;
