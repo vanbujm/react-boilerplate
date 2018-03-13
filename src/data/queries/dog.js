@@ -35,7 +35,10 @@ const dog = {
     }
 
     const doggo = doggos.find(aDog => aDog.id === id);
-    return doggo !== undefined ? doggo : null;
+
+    return new Promise(resolve => {
+      setTimeout(() => resolve(doggo !== undefined ? doggo : null), 3000);
+    });
   },
 };
 
