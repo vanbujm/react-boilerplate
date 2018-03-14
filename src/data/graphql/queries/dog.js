@@ -27,7 +27,7 @@ const createDogs = (numberOfDoggos = 20, seed = 2) => {
       id: i + 1,
       name: capitalize(dogNames[nameIndex]),
       breed: DOG_BREEDS[breedIndex],
-      isGoodDog: true,
+      isGoodDog: 'Yes',
     };
     doggos.push(doggo);
     newSeed++;

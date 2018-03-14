@@ -1,6 +1,11 @@
+enum YES_OR_NO {
+  Yes
+  No
+}
+
 type DogType {
   id: ID!
   name: String
   breed: String
-  isGoodDog: Boolean!
+  isGoodDog: YES_OR_NO!
 }
