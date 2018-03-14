@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test dog query matches expected query object 1`] = `
+Object {
+  "breed": "Dutch Shepherd Dog",
+  "id": 2,
+  "isGoodDog": true,
+  "name": "Hunter",
+}
+`;

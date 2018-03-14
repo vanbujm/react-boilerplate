@@ -1,0 +1,6 @@
+type DogType {
+  id: ID!
+  name: String
+  breed: String
+  isGoodDog: Boolean!
+}

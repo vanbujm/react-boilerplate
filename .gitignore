@@ -20,6 +20,7 @@ yarn-error.log*
 
 # Editors and IDEs
 .idea
+graphql.config.json
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

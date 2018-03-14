@@ -1,0 +1,7 @@
+type NewsItemType {
+  title: String!
+  link: String!
+  author: String
+  pubDate: String!
+  content: String
+}
