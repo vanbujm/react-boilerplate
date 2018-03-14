@@ -37,10 +37,7 @@ const createDogs = (numberOfDoggos = 20, seed = 2) => {
 
 const doggos = createDogs();
 
-const dog = (_, args, _2, { cacheControl }) => {
-  const oneMinute = 60;
-
-  cacheControl.setCacheHint({ maxAge: oneMinute });
+const dog = (_, args) => {
   const id = Number(args.id);
   if (!id) {
     return null;

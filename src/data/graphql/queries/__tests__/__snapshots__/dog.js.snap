@@ -4,7 +4,7 @@ exports[`test dog query matches expected query object 1`] = `
 Object {
   "breed": "Dutch Shepherd Dog",
   "id": 2,
-  "isGoodDog": "YES",
+  "isGoodDog": "Yes",
   "name": "Hunter",
 }
 `;

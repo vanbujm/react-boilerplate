@@ -3,7 +3,7 @@ enum YES_OR_NO {
   No
 }
 
-type DogType {
+type DogType @cacheControl(maxAge: 60) {
   id: ID!
   name: String
   breed: String
