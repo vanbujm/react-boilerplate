@@ -15,11 +15,13 @@ import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
 import { graphql } from 'graphql';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { ApolloEngine } from 'apollo-engine';
+import { getDataFromTree } from 'react-apollo';
 import jwt from 'jsonwebtoken';
 import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
+import createApolloClient from './core/createApolloClient';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -154,6 +156,11 @@ app.get('*', async (req, res, next) => {
       }),
     );
 
+    const client = createApolloClient({
+      schema,
+      rootValue: { request: req },
+    });
+
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context = {
@@ -165,6 +172,7 @@ app.get('*', async (req, res, next) => {
       // You can access redux through react-redux connect
       store,
       storeSubscription: null,
+      client,
     };
 
     const route = await router.resolve(context);
@@ -175,9 +183,9 @@ app.get('*', async (req, res, next) => {
     }
 
     const data = { ...route };
-    data.children = ReactDOM.renderToString(
-      <App context={context}>{route.component}</App>,
-    );
+    const rootComponent = <App context={context}>{route.component}</App>;
+    await getDataFromTree(rootComponent);
+    data.children = ReactDOM.renderToString(rootComponent);
     data.styles = [{ id: 'css', cssText: [...css].join('') }];
     data.scripts = [assets.vendor.js];
     if (route.chunks) {
@@ -187,6 +195,7 @@ app.get('*', async (req, res, next) => {
     data.app = {
       apiUrl: config.api.clientUrl,
       state: context.store.getState(),
+      apolloState: context.client.extract(),
     };
 
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);

@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import { capitalize } from 'lodash';
-import DOG_BREEDS from '../../../constants/dogs/dogBreeds';
-import dogNames from '../../../constants/dogs/dogNames';
+import DOG_BREEDS from './dogBreeds';
+import dogNames from './dogNames';
 
 const seededRandom = (max, min, seed) => {
   const actualMax = max || 1;
@@ -35,19 +35,4 @@ const createDogs = (numberOfDoggos = 20, seed = 2) => {
   return doggos;
 };
 
-const doggos = createDogs();
-
-const dog = (_, args) => {
-  const id = Number(args.id);
-  if (!id) {
-    return null;
-  }
-
-  const doggo = doggos.find(aDog => aDog.id === id);
-
-  return new Promise(resolve => {
-    setTimeout(() => resolve(doggo !== undefined ? doggo : null), 3000);
-  });
-};
-
-export { dog, doggos };
+export default createDogs();

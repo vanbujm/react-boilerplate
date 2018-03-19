@@ -10,13 +10,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { compose, mapProps } from 'recompose';
+import { omit } from 'lodash/object';
 import { connect } from 'react-redux';
+import { isFunction } from 'lodash/lang';
 import { requestReactNews } from '../../actions/news';
+import Loading from '../../components/Loading';
+import News from '../../components/News';
 import s from './Home.css';
 
-export class Home extends React.Component {
+const { withLoadingComponent } = Loading;
+
+export class HomeComponent extends React.Component {
   static propTypes = {
-    requestReactNews: PropTypes.func.isRequired,
     news: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -26,48 +32,53 @@ export class Home extends React.Component {
     ),
   };
 
-  componentDidMount() {
-    this.props.requestReactNews();
-  }
-
   render() {
-    const renderedNews = Array.isArray(this.props.news)
-      ? this.props.news.map(item => (
-          <article key={item.link} className={s.newsItem}>
-            <h1 className={s.newsTitle}>
-              <a href={item.link}>{item.title}</a>
-            </h1>
-            <div
-              className={s.newsDesc}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: item.content }}
-            />
-          </article>
-        ))
-      : null;
-
+    const news =
+      this.props.news !== undefined ? <News news={this.props.news} /> : null;
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>React.js News</h1>
-          {renderedNews}
+          {news}
         </div>
       </div>
     );
   }
 }
 
-Home.defaultProps = {
-  news: [],
+HomeComponent.defaultProps = {
+  news: undefined,
 };
+
+const testFunction = props => {
+  const shouldRenderLoadingComponent =
+    props.loading === true || props.loading === undefined;
+
+  const isRenderingOnBrowserAndHasActionTrigger =
+    isFunction(props.actionTrigger) &&
+    props.loading === undefined &&
+    process.env.BROWSER;
+
+  if (isRenderingOnBrowserAndHasActionTrigger) {
+    props.actionTrigger();
+  }
+  return shouldRenderLoadingComponent;
+};
+
+const filterProps = props => omit(props, ['loading', 'actionTrigger']);
 
 const mapStateToProps = store => ({
+  loading: store.news.loading,
   news: store.news.reactNews,
 });
+
 const mapDispatchToProps = {
-  requestReactNews,
+  actionTrigger: requestReactNews,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(s)(Home),
-);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withLoadingComponent(testFunction),
+  mapProps(filterProps),
+  withStyles(s),
+)(HomeComponent);

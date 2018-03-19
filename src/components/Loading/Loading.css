@@ -1,0 +1,31 @@
+:root {
+  --loading-animation-width: 120px;
+  --loading-animation-height: 120px;
+}
+
+.loader {
+  position: absolute;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #373475;
+  border-radius: 50%;
+  width: var(--loading-animation-width);
+  height: var(--loading-animation-height);
+  top: calc(25% - 0.5 * var(--loading-animation-width));
+  left: calc(50% - 0.5 * var(--loading-animation-height));
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+    border-top: 16px solid #67daf9;
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

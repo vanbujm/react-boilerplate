@@ -13,12 +13,15 @@ import ReactDOM from 'react-dom';
 import deepForceUpdate from 'react-deep-force-update';
 import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
+import createApolloClient from './core/createApolloClient';
 import App from './components/App';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
 import history from './history';
 import { updateMeta } from './DOMUtils';
 import router from './router';
+
+const client = createApolloClient();
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
@@ -40,6 +43,7 @@ const context = {
   // http://redux.js.org/docs/basics/UsageWithReact.html
   store: configureStore(window.App.state),
   storeSubscription: null,
+  client,
 };
 
 const container = document.getElementById('app');

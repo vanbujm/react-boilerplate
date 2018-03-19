@@ -145,7 +145,7 @@ $ yarn run test:watch    # Launch unit test runner and start watching for change
 
 By default, [Mocha](https://mochajs.org/) test runner is looking for test files
 matching the `src/**/*.test.js` pattern. Take a look at
-`src/components/Layout/Layout.test.js` as an example.
+`src/components/Layout/Loading.test.js` as an example.
 
 To deploy the app, run:
 

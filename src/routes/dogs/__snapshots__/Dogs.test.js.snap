@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dogs Page renders 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      Dogs
+    </h1>
+  </div>
+</div>
+`;
+
+exports[`Dogs Page renders dogs 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      Dogs
+    </h1>
+    <div>
+      <h3>
+        Name: 
+        Chewer
+      </h3>
+      <p
+        className="subCategory"
+      >
+        Breed: 
+        Big dog
+      </p>
+      <p
+        className="subCategory"
+      >
+        Is a good dog?: 
+        Yes
+      </p>
+    </div>
+    <div>
+      <h3>
+        Name: 
+        Nibbler
+      </h3>
+      <p
+        className="subCategory"
+      >
+        Breed: 
+        Smol dog
+      </p>
+      <p
+        className="subCategory"
+      >
+        Is a good dog?: 
+        Yes
+      </p>
+    </div>
+  </div>
+</div>
+`;

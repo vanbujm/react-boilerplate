@@ -79,7 +79,6 @@ module.exports = {
   // rootDir: // [string]
   // roots: // [array<string>]
   // setupFiles: // [array]
-  // setupTestFrameworkScriptFile: // [string]
   // snapshotSerializers: // [array<string>]
   // testEnvironment: // [string]
   // testMatch: // [array<string>]
@@ -89,8 +88,10 @@ module.exports = {
   // testRunner: // [string]
   // testURL: // [string]
   // timers: // [string]
+  setupTestFrameworkScriptFile: '<rootDir>/test/testSetup.js',
 
   transform: {
+    '\\.(gql|graphql)$': '<rootDir>/node_modules/jest-transform-graphql',
     '\\.(js|jsx)$': '<rootDir>/node_modules/babel-jest',
     '^(?!.*\\.(js|jsx|json|css|less|styl|scss|sass|sss)$)':
       '<rootDir>/tools/lib/fileTransformer.js',

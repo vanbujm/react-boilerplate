@@ -3,7 +3,8 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Home } from './Home';
+import { componentWithMockContext } from '../../../test/testHelpers';
+import { HomeComponent } from './Home';
 
 const mockNewsData = [
   {
@@ -13,23 +14,18 @@ const mockNewsData = [
   },
 ];
 
-const newsActionSpy = jest.fn();
-
-const mockNewsAction = () => newsActionSpy();
-
 describe('Home Page', () => {
   test('renders', () => {
     const renderedComponent = renderer
-      .create(<Home requestReactNews={mockNewsAction} />)
+      .create(componentWithMockContext()(<HomeComponent />))
       .toJSON();
 
-    expect(newsActionSpy.mock.calls.length).toBeGreaterThan(0);
     expect(renderedComponent).toMatchSnapshot();
   });
 
   test('renders news content', () => {
     const renderedComponent = renderer
-      .create(<Home requestReactNews={mockNewsAction} news={mockNewsData} />)
+      .create(componentWithMockContext()(<HomeComponent news={mockNewsData} />))
       .toJSON();
 
     expect(renderedComponent).toMatchSnapshot();
