@@ -3,7 +3,7 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { Dogs } from './Dogs';
+import { DogsComponent } from './Dogs';
 
 const mockDogs = [
   {
@@ -23,7 +23,7 @@ const mockDogs = [
 describe('Dogs Page', () => {
   test('renders', () => {
     const renderedComponent = renderer
-      .create(<Dogs data={{ dogs: [] }} />)
+      .create(<DogsComponent data={{ dogs: [] }} />)
       .toJSON();
 
     expect(renderedComponent).toMatchSnapshot();
@@ -31,7 +31,7 @@ describe('Dogs Page', () => {
 
   test('renders dogs', () => {
     const renderedComponent = renderer
-      .create(<Dogs data={{ dogs: mockDogs }} />)
+      .create(<DogsComponent data={{ dogs: mockDogs }} />)
       .toJSON();
 
     expect(renderedComponent).toMatchSnapshot();
