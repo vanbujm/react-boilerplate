@@ -24,29 +24,27 @@ exports[`Home Page renders news content 1`] = `
     <h1>
       React.js News
     </h1>
-    <div>
-      <article
-        className="newsItem"
+    <article
+      className="newsItem"
+    >
+      <h1
+        className="newsTitle"
       >
-        <h1
-          className="newsTitle"
+        <a
+          href="https://reactjsnews.com/fake-news"
         >
-          <a
-            href="https://reactjsnews.com/fake-news"
-          >
-            Using Proxies with Redux Types
-          </a>
-        </h1>
-        <div
-          className="newsDesc"
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "<h1>Some mock content with html </h1>",
-            }
+          Using Proxies with Redux Types
+        </a>
+      </h1>
+      <div
+        className="newsDesc"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<h1>Some mock content with html </h1>",
           }
-        />
-      </article>
-    </div>
+        }
+      />
+    </article>
   </div>
 </div>
 `;

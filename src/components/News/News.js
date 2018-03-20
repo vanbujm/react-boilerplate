@@ -15,7 +15,7 @@ export class NewsComponent extends React.Component {
   };
 
   render() {
-    const renderedNews = this.props.news.map(item => (
+    return this.props.news.map(item => (
       <article key={item.link} className={s.newsItem}>
         <h1 className={s.newsTitle}>
           <a href={item.link}>{item.title}</a>
@@ -27,7 +27,6 @@ export class NewsComponent extends React.Component {
         />
       </article>
     ));
-    return <div>{renderedNews}</div>;
   }
 }
 
