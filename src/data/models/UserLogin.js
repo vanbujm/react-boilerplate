@@ -8,18 +8,24 @@
  */
 
 import DataType from 'sequelize';
-import Model from '../sequelize';
+import defaultModelAttributes from './defaultModelAttributes';
 
-const UserLogin = Model.define('UserLogin', {
-  name: {
-    type: DataType.STRING(50),
-    primaryKey: true,
-  },
+export const userLoginDefinition = [
+  'userLogin',
+  {
+    ...defaultModelAttributes,
+    name: {
+      type: DataType.STRING(50),
+      primaryKey: true,
+    },
 
-  key: {
-    type: DataType.STRING(100),
-    primaryKey: true,
+    key: {
+      type: DataType.STRING(100),
+      primaryKey: true,
+    },
   },
-});
+];
+
+const UserLogin = sequelize => sequelize.define(...userLoginDefinition);
 
 export default UserLogin;

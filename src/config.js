@@ -33,7 +33,32 @@ module.exports = {
   },
 
   // Database
-  databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
+  // databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
+  databaseConfig: {
+    development: {
+      database: 'react_boilerplate',
+      username: 'rbserver',
+      password: null,
+      host: 'localhost',
+      dialect: 'postgres',
+      operatorsAliases: false,
+
+      define: {
+        freezeTableName: true,
+      },
+
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+      },
+    },
+    test: {
+      ...this.development,
+      database: 'react_boilerplate_test',
+    },
+  },
 
   // Web analytics
   analytics: {

@@ -23,6 +23,8 @@ const { withLoadingComponent } = Loading;
 
 export class HomeComponent extends React.Component {
   static propTypes = {
+    NODE_ENV: PropTypes.string,
+    DATABASE_URL: PropTypes.string,
     news: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -37,6 +39,8 @@ export class HomeComponent extends React.Component {
       this.props.news !== undefined ? <News news={this.props.news} /> : null;
     return (
       <div className={s.root}>
+        <h1>NODE_ENV: {this.props.NODE_ENV}</h1>
+        <h1>DATABASE_URL: {this.props.DATABASE_URL}</h1>
         <div className={s.container}>
           <h1>React.js News</h1>
           {news}
@@ -48,6 +52,8 @@ export class HomeComponent extends React.Component {
 
 HomeComponent.defaultProps = {
   news: undefined,
+  NODE_ENV: undefined,
+  DATABASE_URL: undefined,
 };
 
 const testFunction = props => {
@@ -70,6 +76,8 @@ const filterProps = props => omit(props, ['loading', 'actionTrigger']);
 const mapStateToProps = store => ({
   loading: store.news.loading,
   news: store.news.reactNews,
+  NODE_ENV: store.runtime.NODE_ENV,
+  DATABASE_URL: store.runtime.DATABASE_URL,
 });
 
 const mapDispatchToProps = {

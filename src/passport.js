@@ -15,9 +15,10 @@
 
 import passport from 'passport';
 import { Strategy as FacebookStrategy } from 'passport-facebook';
-import { User, UserLogin, UserClaim, UserProfile } from './data/models';
+import models from './data/models';
 import config from './config';
 
+const { User, UserLogin, UserClaim, UserProfile } = models;
 /**
  * Sign in with Facebook.
  */

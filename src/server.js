@@ -29,12 +29,14 @@ import errorPageStyle from './routes/error/ErrorPage.css';
 import createFetch from './createFetch';
 import passport from './passport';
 import router from './router';
-import models from './data/models';
 import schema from './data/graphql/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
+import database from './data/models';
+
+const { sequelize } = database;
 
 const app = express();
 
@@ -156,6 +158,20 @@ app.get('*', async (req, res, next) => {
       }),
     );
 
+    store.dispatch(
+      setRuntimeVariable({
+        name: 'NODE_ENV',
+        value: process.env.NODE_ENV,
+      }),
+    );
+
+    store.dispatch(
+      setRuntimeVariable({
+        name: 'DATABASE_URL',
+        value: process.env.DATABASE_URL,
+      }),
+    );
+
     const client = createApolloClient({
       schema,
       rootValue: { request: req },
@@ -232,7 +248,14 @@ app.use((err, req, res, next) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-const promise = models.sync().catch(err => console.error(err.stack));
+const promise = sequelize
+  .authenticate()
+  .then(() => {
+    console.info('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 if (!module.hot) {
   promise.then(() => {
     engine.listen(
@@ -250,7 +273,6 @@ if (!module.hot) {
 }
 
 //
-// Hot Module Replacement
 // -----------------------------------------------------------------------------
 if (module.hot) {
   app.hot = module.hot;

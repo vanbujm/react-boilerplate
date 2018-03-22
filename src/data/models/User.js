@@ -8,17 +8,12 @@
  */
 
 import DataType from 'sequelize';
-import Model from '../sequelize';
+import defaultModelAttributes from './defaultModelAttributes';
 
-const User = Model.define(
-  'User',
+export const userDefinition = [
+  'user',
   {
-    id: {
-      type: DataType.UUID,
-      defaultValue: DataType.UUIDV1,
-      primaryKey: true,
-    },
-
+    ...defaultModelAttributes,
     email: {
       type: DataType.STRING(255),
       validate: { isEmail: true },
@@ -32,6 +27,8 @@ const User = Model.define(
   {
     indexes: [{ fields: ['email'] }],
   },
-);
+];
+
+const User = sequelize => sequelize.define(...userDefinition);
 
 export default User;

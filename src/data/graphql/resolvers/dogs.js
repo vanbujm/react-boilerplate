@@ -1,4 +1,11 @@
-import doggos from '../../../constants/dogs';
+import database from '../../models';
 
-const dogs = () => doggos;
+const { db: { Dog } } = database;
+
+const dogs = async () =>
+  Dog.findAll().map(aDog =>
+    aDog.get({
+      plain: true,
+    }),
+  );
 export default dogs;

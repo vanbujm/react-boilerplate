@@ -14,7 +14,7 @@ const seededRandom = (max, min, seed) => {
   return actualMin + rnd * (actualMax - actualMin);
 };
 
-const createDogs = (numberOfDoggos = 20, seed = 2) => {
+const createDogs = (numberOfDoggos = 200, seed = 2) => {
   const doggos = [];
   let newSeed = seed;
 
@@ -24,7 +24,6 @@ const createDogs = (numberOfDoggos = 20, seed = 2) => {
       seededRandom(DOG_BREEDS.length, 0, newSeed + 1),
     );
     const doggo = {
-      id: i + 1,
       name: capitalize(dogNames[nameIndex]),
       breed: DOG_BREEDS[breedIndex],
       isGoodDog: 'Yes',

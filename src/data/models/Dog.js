@@ -10,37 +10,34 @@
 import DataType from 'sequelize';
 import defaultModelAttributes from './defaultModelAttributes';
 
-export const userProfileDefinition = [
-  'userProfile',
+const yesOrNo = /^Yes|No$/g;
+
+export const dogDefinition = [
+  'dog',
   {
     ...defaultModelAttributes,
-    userId: {
-      type: DataType.INTEGER,
-      primaryKey: true,
-    },
-
-    displayName: {
-      type: DataType.STRING(100),
-    },
-
-    picture: {
+    name: {
       type: DataType.STRING(255),
+      validate: { isAlphanumeric: true, notEmpty: true },
     },
 
-    gender: {
-      type: DataType.STRING(50),
-    },
-
-    location: {
-      type: DataType.STRING(100),
-    },
-
-    website: {
+    breed: {
       type: DataType.STRING(255),
+      validate: { isAlphanumeric: true, notEmpty: true },
     },
+
+    isGoodDog: {
+      type: DataType.STRING(255),
+      defaultValue: 'Yes',
+      allowNull: false,
+      validate: { is: yesOrNo },
+    },
+  },
+  {
+    indexes: [{ fields: ['breed'] }],
   },
 ];
 
-const UserProfile = sequelize => sequelize.define(...userProfileDefinition);
+const Dog = sequelize => sequelize.define(...dogDefinition);
 
-export default UserProfile;
+export default Dog;

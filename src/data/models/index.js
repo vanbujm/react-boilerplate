@@ -1,42 +1,90 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+import Sequelize from 'sequelize';
+import { camelCase, upperFirst } from 'lodash';
+import { databaseConfig } from '../../config';
+import User, { userDefinition } from './User';
+import UserLogin, { userLoginDefinition } from './UserLogin';
+import UserClaim, { userClaimDefinition } from './UserClaim';
+import UserProfile, { userProfileDefinition } from './UserProfile';
+import Dog, { dogDefinition } from './Dog';
 
-import sequelize from '../sequelize';
-import User from './User';
-import UserLogin from './UserLogin';
-import UserClaim from './UserClaim';
-import UserProfile from './UserProfile';
+const env = process.env.NODE_ENV || 'development';
 
-User.hasMany(UserLogin, {
-  foreignKey: 'userId',
-  as: 'logins',
-  onUpdate: 'cascade',
-  onDelete: 'cascade',
-});
+const config = databaseConfig[env];
 
-User.hasMany(UserClaim, {
-  foreignKey: 'userId',
-  as: 'claims',
-  onUpdate: 'cascade',
-  onDelete: 'cascade',
-});
-
-User.hasOne(UserProfile, {
-  foreignKey: 'userId',
-  as: 'profile',
-  onUpdate: 'cascade',
-  onDelete: 'cascade',
-});
-
-function sync(...args) {
-  return sequelize.sync(...args);
+function createSequelizeConnection(configObject) {
+  return configObject.use_env_variable
+    ? new Sequelize(process.env[configObject.use_env_variable], configObject)
+    : new Sequelize(
+        configObject.database,
+        configObject.username,
+        configObject.password,
+        configObject,
+      );
 }
 
-export default { sync };
-export { User, UserLogin, UserClaim, UserProfile };
+// Add your defintion functions here
+const modelDefinitionFunctions = [User, UserLogin, UserClaim, UserProfile, Dog];
+
+function createDefinitions(modelDefinitionFactories, connection, database) {
+  const definitions = {};
+  modelDefinitionFactories.forEach(modelDefinition => {
+    const model = modelDefinition(connection);
+    definitions[upperFirst(camelCase(model.name))] = model;
+  });
+  return {
+    ...database,
+    ...definitions,
+  };
+}
+
+// Add associations here
+function addAssociations(db) {
+  db.User.hasMany(db.UserLogin, {
+    foreignKey: 'userId',
+    as: 'logins',
+    onUpdate: 'cascade',
+    onDelete: 'cascade',
+  });
+
+  db.User.hasMany(db.UserClaim, {
+    foreignKey: 'userId',
+    as: 'claims',
+    onUpdate: 'cascade',
+    onDelete: 'cascade',
+  });
+
+  db.User.hasOne(db.UserProfile, {
+    foreignKey: 'userId',
+    as: 'profile',
+    onUpdate: 'cascade',
+    onDelete: 'cascade',
+  });
+}
+
+function setupDatabase(modelDefinitionFactories, connection) {
+  const db = createDefinitions(modelDefinitionFactories, connection, {});
+  addAssociations(db);
+  return db;
+}
+
+const sequelize = createSequelizeConnection(config);
+const db = setupDatabase(modelDefinitionFunctions, sequelize);
+
+export const allDefinitions = [
+  userDefinition,
+  userLoginDefinition,
+  userClaimDefinition,
+  userProfileDefinition,
+  dogDefinition,
+];
+
+export default {
+  db,
+  sequelize,
+  allDefinitions,
+  User,
+  UserLogin,
+  UserClaim,
+  UserProfile,
+  Dog,
+};
