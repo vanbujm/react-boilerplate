@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test dog query matches expected query object 1`] = `
-Object {
-  "breed": "Dutch Shepherd Dog",
-  "id": 2,
-  "isGoodDog": "Yes",
-  "name": "Hunter",
-}
+Array [
+  Object {
+    "breed": "Dutch Shepherd Dog",
+    "createdAt": null,
+    "id": 2,
+    "isGoodDog": "Yes",
+    "name": "Hunter",
+    "updatedAt": null,
+  },
+]
 `;

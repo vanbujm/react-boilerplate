@@ -55,8 +55,23 @@ module.exports = {
       },
     },
     test: {
-      ...this.development,
       database: 'react_boilerplate_test',
+      username: 'rbserver',
+      password: null,
+      host: 'localhost',
+      dialect: 'postgres',
+      operatorsAliases: false,
+
+      define: {
+        freezeTableName: true,
+      },
+
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+      },
     },
   },
 
