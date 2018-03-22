@@ -9,7 +9,7 @@ const dog = async (_, args) => {
     return null;
   }
 
-  return Dog.findAll({
+  return Dog.findOne({
     where: {
       id,
     },

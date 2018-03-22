@@ -1,6 +1,6 @@
 import { databaseConfig } from '../config';
 
-const { development, test } = databaseConfig;
+const { development, test, production } = databaseConfig;
 module.exports = {
   development: {
     username: development.username,
@@ -17,7 +17,6 @@ module.exports = {
     dialect: test.dialect,
   },
   production: {
-    use_env_variable: process.env.DATABASE_URL,
-    url: process.env.DATABASE_URL,
+    ...production,
   },
 };
