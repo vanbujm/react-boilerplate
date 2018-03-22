@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import database from '../../models';
+import database from '../../database';
 
 const { db: { Dog } } = database;
 

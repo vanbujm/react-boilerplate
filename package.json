@@ -134,6 +134,7 @@
     "redux-mock-store": "^1.4.0",
     "rimraf": "^2.6.2",
     "sequelize-cli": "4.0.0",
+    "sequelize-mock": "0.10.2",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-order": "^0.8.0",

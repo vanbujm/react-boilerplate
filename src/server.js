@@ -34,7 +34,7 @@ import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
-import database from './data/models';
+import database from './data/database';
 
 const { sequelize } = database;
 

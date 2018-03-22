@@ -1,23 +1,29 @@
+import Sequelize from 'sequelize';
 import { databaseConfig } from '../config';
+import { modelDefinitionFunctions } from './models';
+import { setupDatabase } from './utils';
 
-const { development, test } = databaseConfig;
-module.exports = {
-  development: {
-    username: development.username,
-    password: development.password,
-    database: development.database,
-    host: development.host,
-    dialect: development.dialect,
-  },
-  test: {
-    username: test.username,
-    password: test.password,
-    database: test.database,
-    host: test.host,
-    dialect: test.dialect,
-  },
-  production: {
-    use_env_variable: process.env.DATABASE_URL,
-    url: process.env.DATABASE_URL,
-  },
-};
+const env = process.env.NODE_ENV || 'development';
+
+const config = databaseConfig[env];
+
+export function createSequelizeConnection(configObject) {
+  return configObject.use_env_variable
+    ? new Sequelize(process.env[configObject.use_env_variable], configObject)
+    : new Sequelize(
+        configObject.database,
+        configObject.username,
+        configObject.password,
+        configObject,
+      );
+}
+
+function createAndSetupDb() {
+  const sequelize = createSequelizeConnection(config);
+  return {
+    sequelize,
+    db: setupDatabase(modelDefinitionFunctions, sequelize),
+  };
+}
+
+export default createAndSetupDb();
