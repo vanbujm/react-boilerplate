@@ -19,6 +19,10 @@ import { format } from './run';
  */
 async function copy() {
   await makeDir('build');
+  await makeDir('build/config');
+  await makeDir('build/models');
+  await makeDir('build/migrations');
+  await makeDir('build/seeders');
   await Promise.all([
     writeFile(
       'build/package.json',
@@ -36,8 +40,12 @@ async function copy() {
       ),
     ),
     copyFile('LICENSE.txt', 'build/LICENSE.txt'),
+    copyFile('config.production.json', 'build/config/config.json'),
     copyFile('yarn.lock', 'build/yarn.lock'),
     copyDir('public', 'build/public'),
+    copyDir('src/data/models', 'build/models'),
+    copyDir('src/data/migrations', 'build/migrations'),
+    copyDir('src/data/seeders', 'build/seeders'),
   ]);
 
   if (process.argv.includes('--watch')) {
