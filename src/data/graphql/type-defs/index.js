@@ -4,7 +4,7 @@ import DogType from './DogType.graphqls';
 import NewsItemType from './NewsItemType.graphqls';
 import UserType from './UserType.graphqls';
 import SchemaDefinition from './SchemaDefinition.graphqls';
-import RootQuery from './RootQuery.graphqls';
+import Query from './Query.graphqls';
 
-// Make sure to add new types to RootQuery.graphqls!
-export default [SchemaDefinition, RootQuery, DogType, NewsItemType, UserType];
+// Make sure to add new types to Query.graphqls!
+export default [SchemaDefinition, Query, DogType, NewsItemType, UserType];

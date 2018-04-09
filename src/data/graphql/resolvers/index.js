@@ -4,7 +4,7 @@ import me from './me';
 import dog from './dog';
 
 const resolvers = {
-  RootQuery: {
+  Query: {
     dogs,
     dog,
     news,

@@ -1,4 +1,4 @@
-type RootQuery {
+type Query {
   me: [UserType]
   news: [NewsItemType]
   dog(id: Int!): DogType
