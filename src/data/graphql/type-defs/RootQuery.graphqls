@@ -2,5 +2,5 @@ type RootQuery {
   me: [UserType]
   news: [NewsItemType]
   dog(id: Int!): DogType
-  dogs: [DogType] @cacheControl(maxAge: 600)
+  dogs: [DogType]
 }

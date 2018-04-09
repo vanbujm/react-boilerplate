@@ -121,7 +121,8 @@ app.use(
 );
 
 // GraphiQL, a visual editor for queries
-if (__DEV__) app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+// if (__DEV__) app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 //
 // Register server-side rendering middleware
