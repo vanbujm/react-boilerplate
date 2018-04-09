@@ -1,3 +1,3 @@
 type Mutation {
-  dog (name: String!, breed: String!, isGoodDog: YES_OR_NO!): DogType
+  dog (name: String!, breed: String!): DogType
 }

@@ -8,6 +8,7 @@
  */
 
 import DataType from 'sequelize';
+import { capitalize } from 'lodash/string';
 import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 const yesOrNo = /^Yes|No$/g;
@@ -20,6 +21,9 @@ export const dogDefinition = [
     name: {
       type: DataType.STRING(255),
       validate: { is: isAlphaNumericWithSpaces, notEmpty: true },
+      set(val) {
+        this.setDataValue('name', capitalize(val));
+      },
     },
 
     breed: {
