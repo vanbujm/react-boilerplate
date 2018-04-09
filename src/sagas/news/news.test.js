@@ -1,6 +1,6 @@
 /* eslint-env jest */
 /* eslint-disable no-restricted-syntax */
-import 'babel-polyfill';
+import '@babel/polyfill';
 import { runSaga } from 'redux-saga';
 import { retrieveReactNews } from './news';
 

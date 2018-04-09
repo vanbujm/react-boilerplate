@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import 'babel-polyfill';
+import '@babel/polyfill';
 import { fetchNews } from './fetchNews';
 
 const fetchSpy = jest.fn();

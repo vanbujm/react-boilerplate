@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import 'babel-polyfill';
+import '@babel/polyfill';
 import dog from '../dog';
 import database from '../../../database';
 
