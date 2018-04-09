@@ -1,4 +1,4 @@
-query {
+query DogQuery {
   dogs {
     id
     name
