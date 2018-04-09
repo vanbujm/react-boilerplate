@@ -159,20 +159,6 @@ app.get('*', async (req, res, next) => {
       }),
     );
 
-    store.dispatch(
-      setRuntimeVariable({
-        name: 'NODE_ENV',
-        value: process.env.NODE_ENV,
-      }),
-    );
-
-    store.dispatch(
-      setRuntimeVariable({
-        name: 'DATABASE_URL',
-        value: process.env.DATABASE_URL,
-      }),
-    );
-
     const client = createApolloClient({
       schema,
       rootValue: { request: req },
