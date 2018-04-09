@@ -44,6 +44,16 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
+  test-build:
+    <<: *defaults
+    steps:
+      - restore_cache:
+          keys:
+            - react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
+      - run:
+          name: Build release
+          command: yarn run build --release
+
 
   deploy-job:
       <<: *defaults
@@ -94,6 +104,10 @@ workflows:
         - test:
             requires:
               - checkout_code_and_build
+        - test-build:
+            requires:
+              - checkout_code_and_build
         - deploy-job:
             requires:
               - test
+              - test-build
