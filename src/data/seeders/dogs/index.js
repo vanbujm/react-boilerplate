@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import { capitalize } from 'lodash';
+import { capitalize } from 'lodash/string';
 import DOG_BREEDS from './dogBreeds';
 import dogNames from './dogNames';
 

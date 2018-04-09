@@ -19,6 +19,7 @@ module.exports = {
     'prettier',
     'prettier/flowtype',
     'prettier/react',
+    'plugin:you-dont-need-lodash-underscore/compatible',
   ],
 
   plugins: ['flowtype', 'css-modules', 'prettier'],

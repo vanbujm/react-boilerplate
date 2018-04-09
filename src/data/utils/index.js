@@ -1,4 +1,4 @@
-import { camelCase, upperFirst } from 'lodash';
+import { camelCase, upperFirst } from 'lodash/string';
 import { addAssociations } from '../models';
 
 export function createDefinitions(
