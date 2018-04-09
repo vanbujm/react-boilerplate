@@ -8,7 +8,7 @@
  */
 
 import DataType from 'sequelize';
-import defaultModelAttributes from './defaultModelAttributes';
+import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 const yesOrNo = /^Yes|No$/g;
 
@@ -34,6 +34,7 @@ export const dogDefinition = [
     },
   },
   {
+    ...defaultModelOptions,
     indexes: [{ fields: ['breed'] }],
   },
 ];

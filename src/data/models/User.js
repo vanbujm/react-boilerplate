@@ -8,7 +8,7 @@
  */
 
 import DataType from 'sequelize';
-import defaultModelAttributes from './defaultModelAttributes';
+import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 export const userDefinition = [
   'user',
@@ -25,6 +25,7 @@ export const userDefinition = [
     },
   },
   {
+    ...defaultModelOptions,
     indexes: [{ fields: ['email'] }],
   },
 ];

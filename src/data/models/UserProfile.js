@@ -8,7 +8,7 @@
  */
 
 import DataType from 'sequelize';
-import defaultModelAttributes from './defaultModelAttributes';
+import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 export const userProfileDefinition = [
   'userProfile',
@@ -38,6 +38,9 @@ export const userProfileDefinition = [
     website: {
       type: DataType.STRING(255),
     },
+  },
+  {
+    ...defaultModelOptions,
   },
 ];
 

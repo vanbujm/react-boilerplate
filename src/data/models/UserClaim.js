@@ -8,7 +8,7 @@
  */
 
 import DataType from 'sequelize';
-import defaultModelAttributes from './defaultModelAttributes';
+import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 export const userClaimDefinition = [
   'userClaim',
@@ -21,6 +21,9 @@ export const userClaimDefinition = [
     value: {
       type: DataType.STRING,
     },
+  },
+  {
+    ...defaultModelOptions,
   },
 ];
 

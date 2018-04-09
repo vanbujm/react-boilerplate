@@ -8,7 +8,7 @@
  */
 
 import DataType from 'sequelize';
-import defaultModelAttributes from './defaultModelAttributes';
+import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 export const userLoginDefinition = [
   'userLogin',
@@ -23,6 +23,9 @@ export const userLoginDefinition = [
       type: DataType.STRING(100),
       primaryKey: true,
     },
+  },
+  {
+    ...defaultModelOptions,
   },
 ];
 
