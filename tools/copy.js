@@ -43,9 +43,6 @@ async function copy() {
     copyFile('config.production.json', 'build/config/config.json'),
     copyFile('yarn.lock', 'build/yarn.lock'),
     copyDir('public', 'build/public'),
-    copyDir('src/data/models', 'build/models'),
-    copyDir('src/data/migrations', 'build/migrations'),
-    copyDir('src/data/seeders', 'build/seeders'),
   ]);
 
   if (process.argv.includes('--watch')) {

@@ -6,7 +6,12 @@
     "node": ">=6.5",
     "npm": ">=3.10"
   },
-  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.39",
     "apollo-cache-inmemory": "1.1.11",
@@ -75,9 +80,13 @@
     "babel-eslint": "^8.1.2",
     "babel-jest": "^22.0.4",
     "babel-loader": "8.0.0-beta.0",
+    "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-transform-async-to-generator": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
     "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-transform-dir": "1.0.5",
     "browser-sync": "^2.21.0",
     "chokidar": "^2.0.0",
     "css-loader": "^0.28.7",
@@ -147,9 +156,18 @@
     "webpack-node-externals": "^1.6.0"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --no-ignore --fix", "git add --force"],
-    "*.{json,md,graphql}": ["prettier --write", "git add --force"],
-    "*.{css,less,styl,scss,sass,sss}": ["stylelint --fix", "git add --force"]
+    "*.{js,jsx}": [
+      "eslint --no-ignore --fix",
+      "git add --force"
+    ],
+    "*.{json,md,graphql}": [
+      "prettier --write",
+      "git add --force"
+    ],
+    "*.{css,less,styl,scss,sass,sss}": [
+      "stylelint --fix",
+      "git add --force"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
@@ -173,7 +191,6 @@
     "render": "babel-node tools/run render",
     "serve": "babel-node tools/run runServer",
     "start": "babel-node tools/run start",
-    "sequelize":
-      "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize $*"
+    "sequelize": "./node_modules/.bin/babel-node ./node_modules/.bin/sequelize $*"
   }
 }
