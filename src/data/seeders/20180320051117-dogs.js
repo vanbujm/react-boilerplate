@@ -1,4 +1,4 @@
-import dogs from '../../constants/dogs';
+import dogs from './dogs';
 
 export default {
   up: queryInterface => queryInterface.bulkInsert('dog', dogs),
