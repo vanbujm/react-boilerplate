@@ -8,4 +8,9 @@ const dogs = async () =>
       plain: true,
     }),
   );
-export default dogs;
+
+const resolverObject = {
+  Query: { dogs },
+};
+
+export default resolverObject;

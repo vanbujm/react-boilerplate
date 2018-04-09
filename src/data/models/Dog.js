@@ -11,6 +11,7 @@ import DataType from 'sequelize';
 import { defaultModelAttributes, defaultModelOptions } from './defaults';
 
 const yesOrNo = /^Yes|No$/g;
+const isAlphaNumericWithSpaces = /^[a-zA-Z0-9\s]+$/g;
 
 export const dogDefinition = [
   'dog',
@@ -18,12 +19,12 @@ export const dogDefinition = [
     ...defaultModelAttributes,
     name: {
       type: DataType.STRING(255),
-      validate: { isAlphanumeric: true, notEmpty: true },
+      validate: { is: isAlphaNumericWithSpaces, notEmpty: true },
     },
 
     breed: {
       type: DataType.STRING(255),
-      validate: { isAlphanumeric: true, notEmpty: true },
+      validate: { notEmpty: true },
     },
 
     isGoodDog: {

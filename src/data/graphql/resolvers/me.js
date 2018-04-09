@@ -4,4 +4,8 @@ const me = ({ request }) =>
     email: request.user.email,
   };
 
-export default me;
+const resolverObject = {
+  Query: { me },
+};
+
+export default resolverObject;

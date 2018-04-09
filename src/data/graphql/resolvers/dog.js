@@ -16,4 +16,11 @@ const dog = async (_, args) => {
   });
 };
 
-export default dog;
+const dogMutation = async (_, args) => Dog.create(args);
+
+const resolverObject = {
+  Query: { dog },
+  Mutation: { dog: dogMutation },
+};
+
+export default resolverObject;

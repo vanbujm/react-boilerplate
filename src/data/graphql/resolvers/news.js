@@ -43,4 +43,8 @@ const news = () => {
   return items;
 };
 
-export default news;
+const resolverObject = {
+  Query: { news },
+};
+
+export default resolverObject;

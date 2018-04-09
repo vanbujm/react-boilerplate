@@ -21,6 +21,7 @@ const mockDog = {
 describe('test dog query', () => {
   test('matches expected query object', async () => {
     const mockDogModel = Dog.build(mockDog);
+    const { Query: { dog: dogQuery } } = dog;
 
     // set autgenerated values to null so we can snapshot
     mockDogModel.set({ createdAt: null });
@@ -28,7 +29,7 @@ describe('test dog query', () => {
 
     Dog.$queueResult([mockDogModel]);
 
-    const dog2 = await dog(null, args);
+    const dog2 = await dogQuery(null, args);
     await expect(dog2).toMatchSnapshot();
   });
 });
