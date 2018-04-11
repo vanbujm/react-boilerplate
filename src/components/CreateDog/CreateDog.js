@@ -16,7 +16,7 @@ import cx from 'classnames';
 import s from './CreateDog.css';
 import HideDogButton from '../HideDogButton';
 
-class CreateDog extends React.Component {
+export class CreateDogComponent extends React.Component {
   static propTypes = {
     showForm: PropTypes.bool.isRequired,
   };
@@ -37,4 +37,6 @@ const mapStateToProps = store => ({
   showForm: store.dogs.showDogForm,
 });
 
-export default compose(connect(mapStateToProps), withStyles(s))(CreateDog);
+export default compose(connect(mapStateToProps), withStyles(s))(
+  CreateDogComponent,
+);

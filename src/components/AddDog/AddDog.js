@@ -18,7 +18,7 @@ import { showDogForm } from '../../actions/dogs';
 import s from './AddDog.css';
 import withHover from '../withHover';
 
-class AddDog extends React.Component {
+export class AddDogComponent extends React.Component {
   static propTypes = {
     fontAwesomeClass: PropTypes.string.isRequired,
     onMouseEnter: PropTypes.func.isRequired,
@@ -89,4 +89,4 @@ export default compose(
   withHover(mapHandlersToProps, mapCssToProps),
   withHandlers(handlerFunctions),
   withStyles(s),
-)(AddDog);
+)(AddDogComponent);
