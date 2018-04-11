@@ -39,11 +39,12 @@
   border-radius: 1rem;
   margin: 0.5rem 0;
   padding: 1rem;
-  transition: border 0.175s ease-out;
+  color: #5f5f5f;
+  transition: border 0.175s ease-out, color 0.175s ease-out;
 
   .yes,
   .no {
-    color: initial;
+    color: inherit;
     transition: color 0.175s ease-out;
   }
 
@@ -53,8 +54,9 @@
 
   &:hover {
     border: 2px #373277 solid;
-    transition: border 0.175s ease-in;
     cursor: pointer;
+    color: black;
+    transition: border 0.175s ease-in, color 0.175s ease-in;
 
     .yes,
     .no {
