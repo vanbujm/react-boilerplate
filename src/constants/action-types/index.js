@@ -8,3 +8,5 @@ export const SET_REACT_NEWS = 'SET_REACT_NEWS';
 export const REACT_NEWS_FEED_ERROR = 'Failed to load the news feed.';
 
 export const REQUEST_DOGS = 'REQUEST_DOGS';
+export const SHOW_DOG_FORM = 'SHOW_DOG_FORM';
+export const HIDE_DOG_FORM = 'HIDE_DOG_FORM';

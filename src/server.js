@@ -148,6 +148,7 @@ app.get('*', async (req, res, next) => {
 
     const initialState = {
       user: req.user || null,
+      dogs: { showDogForm: false },
     };
 
     const store = configureStore(initialState);

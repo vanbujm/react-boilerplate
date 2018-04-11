@@ -17,6 +17,7 @@ import cx from 'classnames';
 import DogsQuery from './dogs.graphql';
 import s from './Dogs.css';
 import AddDog from '../../components/AddDog';
+import CreateDog from '../../components/CreateDog';
 
 export class DogsComponent extends React.Component {
   static propTypes = {
@@ -58,6 +59,7 @@ export class DogsComponent extends React.Component {
           <div className={s.row}>
             <h1>Dogs</h1>
             <AddDog />
+            <CreateDog />
           </div>
           <div className={s.dogContainer}>{dogs}</div>
         </article>

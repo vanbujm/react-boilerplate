@@ -9,10 +9,12 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { compose } from 'recompose';
+import { compose, withHandlers } from 'recompose';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlusHexagon from '@fortawesome/fontawesome-pro-light/faPlusHexagon';
+import { connect } from 'react-redux';
+import { showDogForm } from '../../actions/dogs';
 import s from './AddDog.css';
 import withHover from '../withHover';
 
@@ -21,16 +23,28 @@ class AddDog extends React.Component {
     fontAwesomeClass: PropTypes.string.isRequired,
     onMouseEnter: PropTypes.func.isRequired,
     onMouseLeave: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func.isRequired,
   };
 
   render() {
-    const { onMouseEnter, onMouseLeave, fontAwesomeClass } = this.props;
+    const {
+      onMouseEnter,
+      onMouseLeave,
+      fontAwesomeClass,
+      onClick,
+      onKeyPress,
+    } = this.props;
 
     return (
       <div
         className={s.plusBox}
+        onClick={onClick}
+        onKeyPress={onKeyPress}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        role="button"
+        tabIndex="0"
       >
         <FontAwesomeIcon icon={faPlusHexagon} size={fontAwesomeClass} />
       </div>
@@ -49,7 +63,30 @@ const mapCssToProps = {
   propName: 'fontAwesomeClass',
 };
 
+const handleAddDog = props => {
+  props.showDogForm();
+};
+
+const handlerFunctions = {
+  onClick: props => e => {
+    e.preventDefault();
+    handleAddDog(props);
+  },
+  onKeyPress: props => e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddDog(props);
+    }
+  },
+};
+
+const mapDispatchToProps = {
+  showDogForm,
+};
+
 export default compose(
-  withStyles(s),
+  connect(null, mapDispatchToProps),
   withHover(mapHandlersToProps, mapCssToProps),
+  withHandlers(handlerFunctions),
+  withStyles(s),
 )(AddDog);

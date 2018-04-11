@@ -3,7 +3,7 @@ import App from '../../src/components/App';
 import context from '../mockContext';
 
 const componentWithMockContext = optionalContext => ComponentToTest => (
-  <App context={optionalContext || context}>{ComponentToTest}</App>
+  <App context={{ ...context, ...optionalContext }}>{ComponentToTest}</App>
 );
 
 export default componentWithMockContext;

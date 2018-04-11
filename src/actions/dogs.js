@@ -1,7 +1,12 @@
-import { REQUEST_DOGS } from '../constants/action-types';
+import {
+  REQUEST_DOGS,
+  SHOW_DOG_FORM,
+  HIDE_DOG_FORM,
+} from '../constants/action-types';
 
-const requestDogs = () => ({ type: REQUEST_DOGS });
+export const requestDogs = () => ({ type: REQUEST_DOGS });
 
-export { requestDogs };
+export const showDogForm = () => ({ type: SHOW_DOG_FORM });
+export const hideDogForm = () => ({ type: HIDE_DOG_FORM });
 
 export default requestDogs;

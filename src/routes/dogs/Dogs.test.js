@@ -3,7 +3,10 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { componentWithMockContext } from '../../../test/testHelpers';
+import {
+  componentWithMockContext,
+  createMockStore,
+} from '../../../test/testHelpers';
 import { DogsComponent } from './Dogs';
 
 const mockDogs = [
@@ -21,10 +24,17 @@ const mockDogs = [
   },
 ];
 
+const initialState = { dogs: { showDogForm: false } };
+const store = createMockStore(initialState);
+
 describe('Dogs Page', () => {
   test('renders', () => {
     const renderedComponent = renderer
-      .create(componentWithMockContext()(<DogsComponent data={{ dogs: [] }} />))
+      .create(
+        componentWithMockContext({ store })(
+          <DogsComponent data={{ dogs: [] }} />,
+        ),
+      )
       .toJSON();
 
     expect(renderedComponent).toMatchSnapshot();
@@ -33,7 +43,9 @@ describe('Dogs Page', () => {
   test('renders dogs', () => {
     const renderedComponent = renderer
       .create(
-        componentWithMockContext()(<DogsComponent data={{ dogs: mockDogs }} />),
+        componentWithMockContext({ store })(
+          <DogsComponent data={{ dogs: mockDogs }} />,
+        ),
       )
       .toJSON();
 
