@@ -1,0 +1,6 @@
+{
+  "name": "withHover",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./withHover.js"
+}

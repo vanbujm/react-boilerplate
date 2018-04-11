@@ -1,0 +1,6 @@
+{
+  "name": "AddDog",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AddDog.js"
+}

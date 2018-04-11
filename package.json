@@ -9,6 +9,11 @@
   "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.39",
+    "@fortawesome/fontawesome": "1.1.5",
+    "@fortawesome/fontawesome-free-solid": "5.0.9",
+    "@fortawesome/fontawesome-pro-light": "5.0.9",
+    "@fortawesome/fontawesome-pro-regular": "5.0.9",
+    "@fortawesome/react-fontawesome": "0.0.18",
     "apollo-cache-inmemory": "1.1.11",
     "apollo-client": "2.2.7",
     "apollo-engine": "1.0.1",

@@ -1,3 +1,4 @@
+/* eslint-disable css-modules/no-undef-class */
 /**
  * React Starter Kit (https://www.reactstarterkit.com/)
  *
@@ -12,8 +13,10 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
+import cx from 'classnames';
 import DogsQuery from './dogs.graphql';
 import s from './Dogs.css';
+import AddDog from '../../components/AddDog';
 
 export class DogsComponent extends React.Component {
   static propTypes = {
@@ -32,11 +35,18 @@ export class DogsComponent extends React.Component {
     const dogMapper = dog => {
       const { id, name, breed, isGoodDog } = dog;
       return (
-        <div key={id}>
-          <h3>Name: {name}</h3>
-          <p className={s.subCategory}>Breed: {breed}</p>
-          <p className={s.subCategory}>Is a good dog?: {isGoodDog}</p>
-        </div>
+        <section key={id} className={s.dog}>
+          <h3>{name}</h3>
+          <p className={s.subCategory}>
+            Breed: <span className={s.answer}>{breed}</span>
+          </p>
+          <p className={s.subCategory}>
+            Is a good dog?:{' '}
+            <span className={cx(s.answer, isGoodDog ? s.yes : s.no)}>
+              {isGoodDog}
+            </span>
+          </p>
+        </section>
       );
     };
     const dogs = this.props.data.dogs
@@ -44,10 +54,13 @@ export class DogsComponent extends React.Component {
       : null;
     return (
       <div className={s.root}>
-        <div className={s.container}>
-          <h1>Dogs</h1>
-          {dogs}
-        </div>
+        <article className={s.container}>
+          <div className={s.row}>
+            <h1>Dogs</h1>
+            <AddDog />
+          </div>
+          <div className={s.dogContainer}>{dogs}</div>
+        </article>
       </div>
     );
   }

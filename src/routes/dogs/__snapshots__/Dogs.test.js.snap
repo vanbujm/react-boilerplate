@@ -4,13 +4,42 @@ exports[`Dogs Page renders 1`] = `
 <div
   className="root"
 >
-  <div
+  <article
     className="container"
   >
-    <h1>
-      Dogs
-    </h1>
-  </div>
+    <div
+      className="row"
+    >
+      <h1>
+        Dogs
+      </h1>
+      <div
+        className="plusBox"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x grow"
+          data-icon="plus-hexagon"
+          data-prefix="fal"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M441.5 39.8C432.9 25.1 417.1 16 400 16H176c-17.1 0-32.9 9.1-41.5 23.8l-112 192c-8.7 14.9-8.7 33.4 0 48.4l112 192c8.6 14.7 24.4 23.8 41.5 23.8h224c17.1 0 32.9-9.1 41.5-23.8l112-192c8.7-14.9 8.7-33.4 0-48.4l-112-192zm84.3 224.3l-112 192c-2.9 4.9-8.2 7.9-13.8 7.9H176c-5.7 0-11-3-13.8-7.9l-112-192c-2.9-5-2.9-11.2 0-16.1l112-192c2.8-5 8.1-8 13.8-8h224c5.7 0 11 3 13.8 7.9l112 192c2.9 5 2.9 11.2 0 16.2zM416 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      className="dogContainer"
+    />
+  </article>
 </div>
 `;
 
@@ -18,48 +47,98 @@ exports[`Dogs Page renders dogs 1`] = `
 <div
   className="root"
 >
-  <div
+  <article
     className="container"
   >
-    <h1>
-      Dogs
-    </h1>
-    <div>
-      <h3>
-        Name: 
-        Chewer
-      </h3>
-      <p
-        className="subCategory"
+    <div
+      className="row"
+    >
+      <h1>
+        Dogs
+      </h1>
+      <div
+        className="plusBox"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
       >
-        Breed: 
-        Big dog
-      </p>
-      <p
-        className="subCategory"
-      >
-        Is a good dog?: 
-        Yes
-      </p>
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x grow"
+          data-icon="plus-hexagon"
+          data-prefix="fal"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M441.5 39.8C432.9 25.1 417.1 16 400 16H176c-17.1 0-32.9 9.1-41.5 23.8l-112 192c-8.7 14.9-8.7 33.4 0 48.4l112 192c8.6 14.7 24.4 23.8 41.5 23.8h224c17.1 0 32.9-9.1 41.5-23.8l112-192c8.7-14.9 8.7-33.4 0-48.4l-112-192zm84.3 224.3l-112 192c-2.9 4.9-8.2 7.9-13.8 7.9H176c-5.7 0-11-3-13.8-7.9l-112-192c-2.9-5-2.9-11.2 0-16.1l112-192c2.8-5 8.1-8 13.8-8h224c5.7 0 11 3 13.8 7.9l112 192c2.9 5 2.9 11.2 0 16.2zM416 250v12c0 6.6-5.4 12-12 12h-98v98c0 6.6-5.4 12-12 12h-12c-6.6 0-12-5.4-12-12v-98h-98c-6.6 0-12-5.4-12-12v-12c0-6.6 5.4-12 12-12h98v-98c0-6.6 5.4-12 12-12h12c6.6 0 12 5.4 12 12v98h98c6.6 0 12 5.4 12 12z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </div>
     </div>
-    <div>
-      <h3>
-        Name: 
-        Nibbler
-      </h3>
-      <p
-        className="subCategory"
+    <div
+      className="dogContainer"
+    >
+      <section
+        className="dog"
       >
-        Breed: 
-        Smol dog
-      </p>
-      <p
-        className="subCategory"
+        <h3>
+          Chewer
+        </h3>
+        <p
+          className="subCategory"
+        >
+          Breed: 
+          <span
+            className="answer"
+          >
+            Big dog
+          </span>
+        </p>
+        <p
+          className="subCategory"
+        >
+          Is a good dog?:
+           
+          <span
+            className="answer yes"
+          >
+            Yes
+          </span>
+        </p>
+      </section>
+      <section
+        className="dog"
       >
-        Is a good dog?: 
-        Yes
-      </p>
+        <h3>
+          Nibbler
+        </h3>
+        <p
+          className="subCategory"
+        >
+          Breed: 
+          <span
+            className="answer"
+          >
+            Smol dog
+          </span>
+        </p>
+        <p
+          className="subCategory"
+        >
+          Is a good dog?:
+           
+          <span
+            className="answer yes"
+          >
+            Yes
+          </span>
+        </p>
+      </section>
     </div>
-  </div>
+  </article>
 </div>
 `;

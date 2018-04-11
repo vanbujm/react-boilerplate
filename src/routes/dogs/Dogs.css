@@ -1,3 +1,5 @@
+@import '../../components/variables.css';
+
 .root {
   display: flex;
   flex: 1;
@@ -7,9 +9,68 @@
 .container {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   margin: 0 auto;
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .subCategory {
   margin-left: 1rem;
+}
+
+.dogContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 45rem;
+  justify-content: space-between;
+}
+
+.dog {
+  display: flex;
+  flex-direction: column;
+  border: 2px #cbcbcb solid;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  transition: border 0.175s ease-out;
+
+  .yes,
+  .no {
+    color: initial;
+    transition: color 0.175s ease-out;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  &:hover {
+    border: 2px #373277 solid;
+    transition: border 0.175s ease-in;
+    cursor: pointer;
+
+    .yes,
+    .no {
+      transition: color 0.175s ease-in;
+    }
+
+    .yes {
+      color: green;
+    }
+
+    .no {
+      color: red;
+    }
+  }
+}
+
+.answer {
+  font-weight: bold;
 }
