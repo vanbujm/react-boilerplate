@@ -20,7 +20,7 @@ exports[`Dogs Page renders 1`] = `
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x grow"
+          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x "
           data-icon="plus-hexagon"
           data-prefix="fal"
           role="img"
@@ -63,7 +63,7 @@ exports[`Dogs Page renders dogs 1`] = `
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x grow"
+          className="svg-inline--fa fa-plus-hexagon fa-w-18 fa-2x "
           data-icon="plus-hexagon"
           data-prefix="fal"
           role="img"
