@@ -12,26 +12,27 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { DogFormComponent } from './DogForm';
+import { DogFormComponent, formFields, createUpdateFunction } from './DogForm';
 
 describe('AddDog', () => {
   test('renders correctly', () => {
     const onSubmit = () => {};
     const onChange = () => {};
-    const updateName = () => {};
-    const updateBreed = () => {};
-    const name = '';
-    const breed = '';
+    const formFieldProps = Object.assign(
+      ...formFields.map(field => ({ [field]: '' })),
+    );
+
+    const formFieldUpdateProps = Object.assign(
+      ...formFields.map(field => ({ [createUpdateFunction(field)]: () => {} })),
+    );
 
     const wrapper = renderer
       .create(
         <DogFormComponent
           onSubmit={onSubmit}
           onChange={onChange}
-          name={name}
-          breed={breed}
-          updateName={updateName}
-          updateBreed={updateBreed}
+          {...formFieldProps}
+          {...formFieldUpdateProps}
         />,
       )
       .toJSON();

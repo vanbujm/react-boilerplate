@@ -5,7 +5,7 @@ import { compose, withHandlers, withState } from 'recompose';
 import { camelCase, capitalize } from 'lodash/string';
 import s from './DogForm.css';
 
-const formFields = ['name', 'breed'];
+export const formFields = ['name', 'breed'];
 
 const formPropTypes = Object.assign(
   ...formFields.map(field => ({
@@ -13,7 +13,7 @@ const formPropTypes = Object.assign(
   })),
 );
 
-const createUpdateFunction = functionName =>
+export const createUpdateFunction = functionName =>
   camelCase(`update ${functionName}`);
 
 const formUpdateFunctionPropTypes = Object.assign(
