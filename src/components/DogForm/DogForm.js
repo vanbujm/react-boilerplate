@@ -7,18 +7,18 @@ import s from './DogForm.css';
 
 const formFields = ['name', 'breed'];
 
+const formPropTypes = Object.assign(
+  {},
+  ...formFields.map(field => ({
+    [field]: PropTypes.string.isRequired,
+  })),
+);
+
 export class DogFormComponent extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
-    ...Object.assign(
-      {},
-      ...formFields.map(field => {
-        const obj = {};
-        obj[field] = PropTypes.string.isRequired;
-        return obj;
-      }),
-    ),
+    ...formPropTypes,
   };
 
   render() {
