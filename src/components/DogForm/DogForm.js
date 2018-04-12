@@ -8,7 +8,6 @@ import s from './DogForm.css';
 const formFields = ['name', 'breed'];
 
 const formPropTypes = Object.assign(
-  {},
   ...formFields.map(field => ({
     [field]: PropTypes.string.isRequired,
   })),
