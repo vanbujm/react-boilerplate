@@ -54,7 +54,6 @@ export class DogFormComponent extends React.Component {
 
 const handlerFunctions = {
   onSubmit: () => e => e.preventDefault(),
-
   onChange: props => e =>
     props[createUpdateFunction(e.target.id)](e.target.value),
 };
