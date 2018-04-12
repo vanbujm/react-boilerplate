@@ -13,11 +13,21 @@ const formPropTypes = Object.assign(
   })),
 );
 
+const createUpdateFunction = functionName =>
+  camelCase(`update ${functionName}`);
+
+const formUpdateFunctionPropTypes = Object.assign(
+  ...formFields.map(field => ({
+    [createUpdateFunction(field)]: PropTypes.func.isRequired,
+  })),
+);
+
 export class DogFormComponent extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     ...formPropTypes,
+    ...formUpdateFunctionPropTypes,
   };
 
   render() {
@@ -42,18 +52,11 @@ export class DogFormComponent extends React.Component {
   }
 }
 
-const createUpdateFunction = functionName =>
-  camelCase(`update ${functionName}`);
-
 const handlerFunctions = {
-  onSubmit: () => e => {
-    e.preventDefault();
-  },
+  onSubmit: () => e => e.preventDefault(),
 
-  onChange: props => e => {
-    const updateFunction = createUpdateFunction(e.target.id);
-    props[updateFunction](e.target.value);
-  },
+  onChange: props => e =>
+    props[createUpdateFunction(e.target.id)](e.target.value),
 };
 
 export default compose(

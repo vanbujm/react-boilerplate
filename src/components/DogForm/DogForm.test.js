@@ -18,6 +18,8 @@ describe('AddDog', () => {
   test('renders correctly', () => {
     const onSubmit = () => {};
     const onChange = () => {};
+    const updateName = () => {};
+    const updateBreed = () => {};
     const name = '';
     const breed = '';
 
@@ -28,6 +30,8 @@ describe('AddDog', () => {
           onChange={onChange}
           name={name}
           breed={breed}
+          updateName={updateName}
+          updateBreed={updateBreed}
         />,
       )
       .toJSON();

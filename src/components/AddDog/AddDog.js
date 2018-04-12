@@ -18,39 +18,33 @@ import { showDogForm } from '../../actions/dogs';
 import s from './AddDog.css';
 import withHover from '../withHover';
 
-export class AddDogComponent extends React.Component {
-  static propTypes = {
-    fontAwesomeClass: PropTypes.string.isRequired,
-    onMouseEnter: PropTypes.func.isRequired,
-    onMouseLeave: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired,
-    onKeyPress: PropTypes.func.isRequired,
-  };
+export const AddDogComponent = ({
+  fontAwesomeClass,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  onKeyPress,
+}) => (
+  <div
+    className={s.plusBox}
+    onClick={onClick}
+    onKeyPress={onKeyPress}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    role="button"
+    tabIndex="0"
+  >
+    <FontAwesomeIcon icon={faPlusHexagon} size={fontAwesomeClass} />
+  </div>
+);
 
-  render() {
-    const {
-      onMouseEnter,
-      onMouseLeave,
-      fontAwesomeClass,
-      onClick,
-      onKeyPress,
-    } = this.props;
-
-    return (
-      <div
-        className={s.plusBox}
-        onClick={onClick}
-        onKeyPress={onKeyPress}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        role="button"
-        tabIndex="0"
-      >
-        <FontAwesomeIcon icon={faPlusHexagon} size={fontAwesomeClass} />
-      </div>
-    );
-  }
-}
+AddDogComponent.propTypes = {
+  fontAwesomeClass: PropTypes.string.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onKeyPress: PropTypes.func.isRequired,
+};
 
 const mapHandlersToProps = {
   onMouseEnter: 'onMouseEnter',
@@ -63,9 +57,7 @@ const mapCssToProps = {
   propName: 'fontAwesomeClass',
 };
 
-const handleAddDog = props => {
-  props.showDogForm();
-};
+const handleAddDog = props => props.showDogForm();
 
 const handlerFunctions = {
   onClick: props => e => {
