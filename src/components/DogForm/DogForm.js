@@ -2,34 +2,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { compose, withHandlers, withState } from 'recompose';
-import { camelCase } from 'lodash/string';
+import { camelCase, capitalize } from 'lodash/string';
 import s from './DogForm.css';
+
+const formFields = ['name', 'breed'];
 
 export class DogFormComponent extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    breed: PropTypes.string.isRequired,
+    ...Object.assign(
+      {},
+      ...formFields.map(field => {
+        const obj = {};
+        obj[field] = PropTypes.string.isRequired;
+        return obj;
+      }),
+    ),
   };
 
   render() {
-    const { onSubmit, onChange, name, breed } = this.props;
+    const { onSubmit, onChange } = this.props;
+    const textInputs = formFields.map(field => (
+      <label htmlFor={field} key={field}>
+        {capitalize(field)}:
+        <input
+          id={field}
+          type="text"
+          value={this.props[field]}
+          onChange={onChange}
+        />
+      </label>
+    ));
     return (
       <form onSubmit={onSubmit} className={s.root}>
-        <label htmlFor="name">
-          Name:
-          <input id="name" type="text" value={name} onChange={onChange} />
-        </label>
-        <label htmlFor="breed">
-          Breed:
-          <input id="breed" type="text" value={breed} onChange={onChange} />
-        </label>
+        {textInputs}
         <input type="submit" value="Submit" />
       </form>
     );
   }
 }
+
+const createUpdateFunction = functionName =>
+  camelCase(`update ${functionName}`);
 
 const handlerFunctions = {
   onSubmit: () => e => {
@@ -37,14 +52,13 @@ const handlerFunctions = {
   },
 
   onChange: props => e => {
-    const updateFunction = camelCase(`update ${e.target.id}`);
+    const updateFunction = createUpdateFunction(e.target.id);
     props[updateFunction](e.target.value);
   },
 };
 
 export default compose(
-  withState('name', 'updateName', ''),
-  withState('breed', 'updateBreed', ''),
+  ...formFields.map(field => withState(field, createUpdateFunction(field), '')),
   withHandlers(handlerFunctions),
   withStyles(s),
 )(DogFormComponent);
