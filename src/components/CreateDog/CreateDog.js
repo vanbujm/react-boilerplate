@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import s from './CreateDog.css';
 import HideDogButton from '../HideDogButton';
+import DogForm from '../DogForm';
 
 export class CreateDogComponent extends React.Component {
   static propTypes = {
@@ -26,7 +27,7 @@ export class CreateDogComponent extends React.Component {
     const showFormCss = showForm ? '' : s.hide;
     return (
       <div className={cx(s.root, showFormCss)}>
-        DOG FORM
+        <DogForm />
         <HideDogButton />
       </div>
     );

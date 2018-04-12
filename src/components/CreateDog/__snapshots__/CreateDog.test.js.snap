@@ -4,7 +4,37 @@ exports[`CreateDog renders correctly 1`] = `
 <div
   className="root"
 >
-  DOG FORM
+  <form
+    className="root"
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="name"
+    >
+      Name:
+      <input
+        id="name"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      htmlFor="breed"
+    >
+      Breed:
+      <input
+        id="breed"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <input
+      type="submit"
+      value="Submit"
+    />
+  </form>
   <div
     className="hideButton"
   >
