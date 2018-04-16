@@ -18,7 +18,7 @@ jobs:
             - react-boilerplate-yarn-{{ checksum "package.json" }}
             - react-boilerplate-yarn
             - react-boilerplate-
-      - run: yarn install --cache-folder yarn_cache
+      - run: yarn install
       - save_cache:
           key: react-boilerplate-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -27,7 +27,6 @@ jobs:
           key: react-boilerplate-yarn-{{ checksum "package.json" }}
           paths:
             - node_modules
-            - yarn_cache
 
   test:
     <<: *defaults
