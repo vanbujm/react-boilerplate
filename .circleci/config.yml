@@ -9,7 +9,7 @@ defaults: &defaults
 
 version: 2
 jobs:
-  checkout_code_and_build:
+  checkout-code-and-build:
     <<: *defaults
     steps:
       - checkout
@@ -101,13 +101,13 @@ workflows:
    version: 2
    build-and-deploy:
       jobs:
-        - checkout_code_and_build
+        - checkout-code-and-build
         - test:
             requires:
-              - checkout_code_and_build
+              - checkout-code-and-build
         - test-build:
             requires:
-              - checkout_code_and_build
+              - checkout-code-and-build
         - deploy-job:
             requires:
               - test
