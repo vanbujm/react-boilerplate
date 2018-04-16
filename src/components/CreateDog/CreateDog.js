@@ -17,7 +17,7 @@ import s from './CreateDog.css';
 import HideDogButton from '../HideDogButton';
 import DogForm from '../DogForm';
 
-export class CreateDogComponent extends React.Component {
+export class CreateDogComponent extends React.PureComponent {
   static propTypes = {
     showForm: PropTypes.bool.isRequired,
   };

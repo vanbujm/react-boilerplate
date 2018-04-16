@@ -22,7 +22,7 @@ const formUpdateFunctionPropTypes = Object.assign(
   })),
 );
 
-export class DogFormComponent extends React.Component {
+export class DogFormComponent extends React.PureComponent {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,

@@ -18,33 +18,38 @@ import { showDogForm } from '../../actions/dogs';
 import s from './AddDog.css';
 import withHover from '../withHover';
 
-export const AddDogComponent = ({
-  fontAwesomeClass,
-  onMouseEnter,
-  onMouseLeave,
-  onClick,
-  onKeyPress,
-}) => (
-  <div
-    className={s.plusBox}
-    onClick={onClick}
-    onKeyPress={onKeyPress}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-    role="button"
-    tabIndex="0"
-  >
-    <FontAwesomeIcon icon={faPlusHexagon} size={fontAwesomeClass} />
-  </div>
-);
+export class AddDogComponent extends React.PureComponent {
+  static propTypes = {
+    fontAwesomeClass: PropTypes.string.isRequired,
+    onMouseEnter: PropTypes.func.isRequired,
+    onMouseLeave: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func.isRequired,
+  };
 
-AddDogComponent.propTypes = {
-  fontAwesomeClass: PropTypes.string.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onKeyPress: PropTypes.func.isRequired,
-};
+  render() {
+    const {
+      onClick,
+      onKeyPress,
+      onMouseEnter,
+      onMouseLeave,
+      fontAwesomeClass,
+    } = this.props;
+    return (
+      <div
+        className={s.plusBox}
+        onClick={onClick}
+        onKeyPress={onKeyPress}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        role="button"
+        tabIndex="0"
+      >
+        <FontAwesomeIcon icon={faPlusHexagon} size={fontAwesomeClass} />
+      </div>
+    );
+  }
+}
 
 const mapHandlersToProps = {
   onMouseEnter: 'onMouseEnter',

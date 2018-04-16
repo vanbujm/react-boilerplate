@@ -17,7 +17,7 @@ import faTimesHexagon from '@fortawesome/fontawesome-pro-light/faTimesHexagon';
 import s from './HideDogButton.css';
 import { hideDogForm } from '../../actions/dogs';
 
-export class HideDogButtonComponent extends React.Component {
+export class HideDogButtonComponent extends React.PureComponent {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     onKeyPress: PropTypes.func.isRequired,

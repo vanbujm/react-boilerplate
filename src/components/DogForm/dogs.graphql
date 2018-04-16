@@ -1,0 +1,8 @@
+query DogQuery {
+  dogs {
+    id
+    name
+    breed
+    isGoodDog
+  }
+}
